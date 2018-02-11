@@ -1,0 +1,19 @@
+.main-menu
+
+
+    /*
+       Adaptive
+       ========================================================================== */
+
+    +above(bp-mobile-menu)
+        &__item
+            margin-right 1em
+
+            &:last-child
+                margin-right 0
+
+    +below(bp-mobile-menu)
+        &__item
+            display block
+            text-align center
+            padding 0.4em

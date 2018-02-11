@@ -1,0 +1,86 @@
+.popup
+    trs-time = 0.3s
+
+    // С чем-то из этого есть проблемы на некоторых тач-устройствах
+    // backface-visibility hidden
+    // overflow-scrolling touch
+    // visibility hidden
+
+    position fixed
+    z-index -1
+    top 0
+    right 0
+    bottom 0
+    left 0
+    overflow auto
+    overflow-x hidden
+    text-align center
+    padding 0
+    background alpha(black, 0.9)
+    will-change opacity
+    opacity 0
+    pointer-events none
+    transition all trs-time
+    transition-delay trs-time
+    white-space nowrap
+    font-size 0
+    user-select none
+
+    &.is-opened
+        z-index 10000
+        opacity 1
+        // visibility visible
+        pointer-events all
+        transition-delay 0s
+
+        .popup__content
+            transform translate(0, 0)
+            transition-delay trs-time
+            opacity 1
+
+    &:before
+        content ""
+        display inline-block
+        height 100%
+
+
+    &:before
+    &__content
+        vertical-align middle
+
+    &__content
+        font-size 1rem
+        user-select auto
+        white-space normal
+
+        position relative
+        outline 0
+        text-size-adjust 100%
+        box-sizing border-box
+        margin 2rem 0
+        padding 2rem 3%
+        transform translate(0, -100%)
+        transform translate3d(0, -100%, 0)
+        will-change transform
+        opacity 0
+        transition all trs-time
+        color black
+        background #fff
+        display inline-block
+        text-align left
+        max-width rel-size(700px)
+        width 100%
+
+        &--wide
+            max-width rel-size(1200px)
+
+    &__close
+        position absolute
+        right 1rem
+        top @right
+        width 2rem
+        height @width
+        transition transform trs-time-default
+
+        &:active
+            transform translate(0, 0.3em)

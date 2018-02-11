@@ -1,0 +1,26 @@
+.burger
+    time = trs-time-default
+    shift = 2.5rem
+    cursor pointer
+
+    &__line
+        transform-origin center center
+        transition all time
+
+        &--1
+            transform rotate(0) translate(0, (- shift))
+
+        &--3
+            transform rotate(0) translate(0, shift)
+
+    &.is-active
+        & ^[0]
+            &__line
+                &--1
+                    transform rotate(45deg) translate(0, 0)
+
+                &--2
+                    opacity 0
+
+                &--3
+                    transform rotate(-45deg) translate(0, 0)

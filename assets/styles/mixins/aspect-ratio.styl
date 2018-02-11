@@ -1,0 +1,50 @@
+// Using psuedo elements to maintain an elements aspect ratio, even as it scales.
+// Stealed from:
+// http://codepen.io/seanseansean/pen/NPwLxg
+aspect-ratio(w, h, pos = relative)
+    if w == none && (!h && !pos)
+        &:before
+            display none
+
+    else
+        if pos != none
+            position pos
+
+        &:before
+            display block
+            content ""
+            width 100%
+            padding-top (h/w) * 100%
+
+        .g-aspect-inner
+            full-sized()
+
+
+// Улучшенная версия миксина
+// Теперь блок и пропорционально изменяется в размерах,
+// и растягивается по высоте, если текста становится много.
+aspect-ratio--upd(w, h = w)
+    if w == none
+        padding-top 0
+
+    else
+        pt = (round((h / w) * 100, 2))%
+        padding-top pt
+        box-sizing border-box
+
+        // NOTE: На случай, если когда-нибудь возникнут проблемы с отображением,
+        // то вот хак, который работал для браузера FF
+        // (затем они в одной из новых версий поправили отображение, и данных хак перестал быть нужен).
+        // display table
+        // width 100%
+
+        .g-aspect-inner
+            margin-top (- pt)
+
+            // NOTE: На случай, если когда-нибудь возникнут проблемы с отображением,
+            // то вот хак, который работал для браузера FF
+            // (затем они в одной из новых версий поправили отображение, и данных хак перестал быть нужен).
+            // display flex
+            // width 100%
+            // flex-wrap wrap
+            // flex-direction column

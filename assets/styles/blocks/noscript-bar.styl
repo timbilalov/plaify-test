@@ -1,0 +1,35 @@
+.noscript-bar
+    position absolute
+    left 0
+    top 0
+    width 100%
+    font-size 0.7em
+
+    &__content
+        position fixed
+        left 0
+        top 0
+        width 100%
+        background-color black
+        color white
+        z-index 100
+        padding 1em 0
+
+    &__checkbox
+        display none
+
+        &:checked
+            & + ^[0]
+                &__content
+                    display none
+
+    &__cols
+        display flex
+        justify-content space-between
+        flex-wrap wrap
+
+    label
+        cursor pointer
+
+    svg
+        @extend $svg-icon

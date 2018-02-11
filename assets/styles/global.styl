@@ -1,0 +1,55 @@
+.g-hidden
+    display none !important // @stylint ignore
+
+.g-hidden--soft
+    display none
+
+.g-vam
+    display inline-block
+    vertical-align middle
+
+.g-tac
+    text-align center
+
+.g-relative
+    position relative
+
+.g-nobr
+    white-space nowrap
+
+hr
+    margin 2rem 0
+    border 0
+    height rel-size(1px)
+    background-color lighten(black, 80)
+
+
+$preparing
+    position relative
+
+    &.is-preparing
+        > *:not(.g-show-preparing)
+            opacity 0
+            visibility hidden
+
+        &:after
+            content ""
+            spinner(2em)
+
+.g-preparing
+    @extend $preparing
+
+
+figure
+    margin 1em 0
+    text-align center
+
+figcaption
+    margin-top 1em
+    font-size 0.9em
+
+// WARNING! В редких случаях это правило
+// работает во вред. Но его несложно перекрыть,
+// ведь специфичность всего 1.
+img
+    max-width 100%

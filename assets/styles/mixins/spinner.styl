@@ -1,0 +1,27 @@
+@keyframes rotation
+    from
+        transform rotate(0deg)
+    to
+        transform rotate(359deg)
+
+
+spinner(size = 2rem, color = spinner-default-color, bdwidth = size / 10)
+    display inline-block
+    position absolute
+    box-sizing border-box
+
+    left 50%
+    width size
+    margin-left (-(@width / 2))
+
+    height @width
+    top 50%
+    margin-top (-(@height / 2))
+
+    border-left bdwidth solid alpha(color, 0.15)
+    border-right @border-left
+    border-bottom @border-left
+    border-top bdwidth solid alpha(color, 0.8)
+    border-radius 100%
+
+    animation rotation .6s infinite linear

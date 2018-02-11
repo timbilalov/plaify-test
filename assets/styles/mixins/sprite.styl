@@ -1,0 +1,29 @@
+/*
+ * Splited on few mixins for better readability.
+ * Variables with sprite names, cords, etc generated via gulp.spritesmith with handelbasrs template(search in tasks folder near sprite task)
+ *
+ * Using:
+ * Call mixin: sprite {yourImageName}, [{spriteName} - optional]
+ */
+
+sprite-size(sprite-icon, sprite-img = "common")
+    iconVarName = "s-" + sprite-icon + "--" + sprite-img
+    icon = lookup(iconVarName)
+    width icon[4]
+    height icon[5]
+
+sprite-position(sprite-icon, sprite-img = "common")
+    iconVarName = "s-" + sprite-icon + "--" + sprite-img
+    icon = lookup(iconVarName)
+    background-position icon[2] icon[3]
+
+sprite-image(sprite-img)
+    imgVarName = "" + sprite-img + "-sprite"
+    @extend ${imgVarName}
+
+sprite(sprite-icon, sprite-img = "common")
+    sprite-image(sprite-img)
+    sprite-position(sprite-icon, sprite-img)
+    sprite-size(sprite-icon, sprite-img)
+    display inline-block
+    vertical-align middle

@@ -1,0 +1,52 @@
+$table
+    table-layout auto
+    width 100%
+    border-collapse collapse
+    margin 1em 0 2em
+
+    td, th
+        padding 0.8em 1.2em
+        border rel-size(1px) solid lighten(black, 70)
+        text-align left
+
+    th
+        font-weight bold
+
+    // Случай, когда таблица неправильно свёрстана
+    // (напр., через визивик)
+    > tbody:first-child tr:first-child
+        td
+            font-weight bold
+
+table
+    @extend $table
+
+
+    +below(bp-xm)
+        thead
+            display none
+
+        // Случай, когда таблица неправильно свёрстана
+        // (напр., через визивик)
+        > tbody:first-child tr:first-child
+            display none
+
+        tr
+            display block
+            margin 1em 0
+            border rel-size(1px) solid black
+
+        td
+            display block
+            border 0
+            border-bottom rel-size(1px) dotted #ccc
+            word-break break-word
+
+            &:last-child
+                border-bottom none
+
+            &:before
+                content attr(data-label)
+                font-weight bold
+                display block
+                margin-bottom 0.7em

@@ -1,0 +1,206 @@
+$input
+    display block
+    width 100%
+    padding 0.85em 1.2em
+    box-sizing border-box
+    border 0
+    outline 0
+    background-color white
+    color black
+    border rel-size(1px) solid black
+    fz(15)
+
+    &:focus
+        box-shadow 0 0 0.3em 0.05em form-focus-color
+        border-color form-focus-color
+
+$form
+    position relative
+
+    &.is-sending
+        > *
+            opacity .5
+            pointer-events none
+
+        &:after
+            content ""
+            spinner(3em)
+
+
+
+
+
+form:not([class])
+.form
+    @extend $form
+
+    input:not(.g-raw):not([type="radio"]):not([type="checkbox"]):not([type="submit"]):not([type="image"]):not([type="button"]):not([type="reset"]):not([type="color"]):not([type="file"])
+    select:not(.g-raw)
+    textarea:not(.g-raw)
+        @extend $input
+
+    textarea
+        resize vertical
+        min-height 13em
+
+    button[type="submit"]
+    input[type="submit"]
+    input[type="button"]
+    input[type="reset"]
+        &:not(.g-raw)
+            @extend $btn
+
+    input[type="image"]
+        max-width 100%
+
+    label
+        cursor pointer
+
+form-error-bdwidth = rel-size(2px)
+
+.form
+    &__title
+        margin 0 0 1.05em
+        fz(35.28)
+        font-weight bold
+
+        +below(bp-xm)
+            font-size 1.7em
+
+    &__sect
+        margin-bottom 2em
+
+        &:last-child
+            margin-bottom 0
+
+    &__col
+        float left
+        width 48%
+        margin-right 4%
+
+        &:last-child
+            margin-right 0
+
+        +below(bp-xm)
+            float none
+            width auto
+            margin-right 0
+            margin-bottom 2em
+
+            &:last-child
+                margin-bottom 0
+
+    &__submit
+        margin-top 2em
+
+    &__error-msg
+        display none
+        position absolute
+        right - form-error-bdwidth
+        bottom 100%
+        background-color form-error-color
+        color white
+        fz(16)
+        padding 0.3em 1em
+        white-space nowrap
+
+        &--left
+            right auto
+            left - form-error-bdwidth
+
+    &__input-wrapper
+        position relative
+        border form-error-bdwidth solid transparent
+
+        &.is-error
+            border-color form-error-color
+
+            .form__error-msg
+                display block
+
+    &--no-paddings
+        padding 0
+
+    &__checkbox
+        width rel-size(30px) - form-error-bdwidth * 2
+        height @width
+        background-color white
+        display inline-block
+        vertical-align -0.4em
+        margin-right 0.8em
+        position relative
+
+        input[type="checkbox"]
+            position absolute
+            visibility hidden
+            pointer-events none
+
+            &:checked + .svg-icon
+                transform translate(0, 0)
+                opacity 1
+
+        .svg-icon
+            fill form-error-color
+            width 120%
+            height @width
+            position absolute
+            right -43%
+            top -31%
+            transform translate(0, -120%)
+            opacity 0
+            transition all trs-time-default
+
+    &__state
+        padding 1px
+
+        &--2
+            display none
+            full-sized()
+
+    &.is-state-2
+        .form__state--1
+            visibility hidden
+            opacity 0
+
+        .form__state--2
+            display block
+
+    &__err
+        color form-error-color
+        margin 0 0 2rem
+
+    &__antispam
+        // text-align center
+        // margin 2rem 0
+        margin-top 2rem
+
+        // input[type="image"]:not(:nth-child(2))
+        //     pointer-events none
+
+
+    &__thanks
+        padding 5% 10%
+        box-sizing border-box
+        position relative
+        top 50%
+        transform translate(0, -50%)
+
+    &__thank-title
+        font-weight 500
+        fz(100)
+
+        +below(bp-xm)
+            fz(40)
+
+        +below(bp-xs)
+            font-size 2em
+
+    &__thank-subtitle
+        fz(32)
+
+        +below(bp-xs)
+            font-size 1em
+
+    +below(xs)
+        &__thanks
+            padding 0

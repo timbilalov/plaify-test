@@ -1,0 +1,45 @@
+// This is for footer
+// "sticked" at bottom
+body
+html
+    width 100%
+    height 100%
+
+body
+    &.is-hover-disabled
+        pointer-events none
+
+    // NOTE: Это для плашки browser-update
+    &.is-popup-opened
+        overflow hidden
+
+.l-wrapper
+    overflow auto
+    min-height 100%
+    display flex
+    flex-direction column
+
+    &.is-abs
+        full-sized()
+
+.l-content
+    display block
+    flex 1 0 auto
+
+.l-header
+.l-footer
+    display block
+    flex none
+
+.l-footer
+    overflow visible
+
+.l-container
+    width container-width
+    margin auto
+    position relative
+
+.l-text-container
+    width text-container-width
+    margin auto
+    padding 1.5em 0

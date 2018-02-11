@@ -1,0 +1,52 @@
+{
+  "name": "unfriend-markup-template",
+  "version": "1.0.0",
+  "description": "boilerplate for new projects",
+  "keywords": "frontend, gulp, markup, template, workflow, html5, stylus, javascript, php, svg, eslint, stylint, modules, build, debug",
+  "homepage": "https://vk.com/timbilalov",
+  "license": "MIT",
+  "author": {
+    "name": "unfriend",
+    "email": "t-moore@mail.ru"
+  },
+  "main": "gulpfile.js",
+  "repository": {
+    "type": "git",
+    "url": "https://unfriend@bitbucket.org/unfriend/markup-template.git"
+  },
+  "devDependencies": {
+    "autoprefixer": "^7.2.6",
+    "browser-sync": "^2.23.6",
+    "dateformat": "^3.0.3",
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-count": "^1.0.0",
+    "gulp-csso": "^3.0.1",
+    "gulp-environments": "^0.1.2",
+    "gulp-eslint": "^4.0.2",
+    "gulp-if": "^2.0.2",
+    "gulp-imagemin": "^4.1.0",
+    "gulp-notify": "^3.2.0",
+    "gulp-plumber": "^1.2.0",
+    "gulp-postcss": "^7.0.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-replace": "^0.6.1",
+    "gulp-size": "^3.0.0",
+    "gulp-sourcemaps": "^2.6.4",
+    "gulp-stylint": "^4.0.1",
+    "gulp-stylus": "^2.7.0",
+    "gulp-svg-symbols": "^3.1.0",
+    "gulp-svgmin": "^1.2.4",
+    "gulp-uglify": "^3.0.0",
+    "gulp.spritesmith": "^6.9.0",
+    "imagemin-pngquant": "^5.0.1",
+    "jshint": "^2.9.5",
+    "jshint-stylish": "^2.2.1",
+    "mkdirp": "^0.5.1",
+    "node-notifier": "^5.2.1",
+    "require-dir": "^1.0.0",
+    "run-sequence": "^2.2.1",
+    "rupture": "^0.7.1"
+  },
+  "private": true
+}

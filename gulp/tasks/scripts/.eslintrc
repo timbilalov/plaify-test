@@ -1,0 +1,30 @@
+{
+    "extends": "eslint:recommended",
+
+    "rules": {
+        "no-console": 0,
+        "indent": ["warn", 4],
+        "no-multiple-empty-lines": ["warn", { max: 4, maxEOF: 1, maxBOF: 0 }],
+        "space-before-function-paren": ["warn", "never"],
+        "camelcase": 1,
+        "quotes": ["warn", "double"],
+        "semi": ["error", "always"],
+        "keyword-spacing": ["error", { "before": true, "after": true }],
+        "space-before-blocks": "error",
+        "moduleName": 2
+    },
+
+    "globals": {
+        "DEBUG": true,
+        "describe": true,
+        "expect": true,
+        "it": true,
+        "app": true
+    },
+
+    "env": {
+        "browser": true,
+        "jquery": true,
+        "mocha": true
+    }
+}

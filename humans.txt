@@ -1,0 +1,11 @@
+Frontend-developer: Tim Bilalov (unfriend)
+E-mail: t-moore@mail.ru
+VK: https://vk.com/timbilalov
+
+
+Standarts & technologies: HTML5, CSS3, JavaScript (+ CoffeeScript), Stylus (CSS preprocessor), Gulp.js (build system), SVG-sprites.
+Components: jQuery, Swiper, Parsley
+JS-logger: Sentry
+
+
+Last update: 11.02.2018

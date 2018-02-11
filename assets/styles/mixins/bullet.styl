@@ -1,0 +1,12 @@
+bullet(sz = 0.3em, clr = currentColor)
+    display inline-block
+    border-radius 100%
+    background-color clr
+
+    if sz > 0.3em
+        width sz
+        height @width
+    else
+        width sz * 2
+        height @width
+        transform scale(0.5)
