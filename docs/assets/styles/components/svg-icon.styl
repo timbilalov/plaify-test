@@ -1,0 +1,59 @@
+$svg-icon
+    fill currentColor
+    stroke none
+    width 1em
+    height @width
+    display inline-block
+    vertical-align middle
+    overflow visible !important // @stylint ignore
+    border 0
+    outline 0
+    transform-origin center center
+    position relative
+    box-sizing border-box
+
+.svg-icon
+    @extend $svg-icon
+
+    &--stroke
+        fill none
+        stroke currentColor
+        stroke-width 16
+
+    &--contain
+        full-sized()
+
+    bdw = round(rel-size(2px, em), 3)
+    p = 0.6em
+    &--border
+        border bdw solid currentColor
+        border-radius 100%
+        padding p
+        width (1em + p * 2 + bdw * 2)
+        height @width
+
+    &--fill
+        border-radius 100%
+        padding round(p + bdw, 3)
+        background-color black
+        color white
+        width (1em + p * 2 + bdw * 2)
+        height @width
+
+    &--rotate-45
+        transform rotate(45deg)
+
+    &--rotate-90
+        transform rotate(90deg)
+
+    &--rotate-180
+        transform rotate(180deg)
+
+    &--rotate-270
+        transform rotate(270deg)
+
+    > svg
+        display block
+
+symbol
+    overflow visible

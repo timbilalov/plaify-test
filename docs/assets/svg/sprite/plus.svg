@@ -1,0 +1,6 @@
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 200 200" xml:space="preserve">
+    <g>
+        <line x1="100" y1="0" x2="100" y2="200" />
+        <line x1="200" y1="100" x2="0" y2="100" />
+    </g>
+</svg>

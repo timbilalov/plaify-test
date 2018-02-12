@@ -1,0 +1,56 @@
+link-decoration(bd-clr = currentColor, bd-clr-hover = false, bd-opacity = 0.2, bd-width = 0.05em, forceApply = false)
+    text-decoration none
+
+    if bd-clr != none
+        if bd-clr != currentColor
+            if bd-clr != transparent
+                bd-clr--res = alpha(bd-clr, bd-opacity)
+            else
+                bd-clr--res = transparent
+
+            if !bd-clr-hover
+                bd-clr--res-2 = alpha(bd-clr, 0.6)
+            else
+                bd-clr--res-2 = bd-clr-hover
+        else
+            bd-clr--res = bd-clr
+            if !bd-clr-hover
+                bd-clr--res-2 = bd-clr--res
+            else
+                bd-clr--res-2 = bd-clr-hover
+
+            if not forceApply
+                @extend $link-decoration-currentColor
+
+        if not forceApply
+            return
+
+
+        transition border trs-time-default
+        pc-res = 100% / bd-opacity
+
+        border-width 0
+        border-style solid
+        border-color transparent
+        border-bottom-width rel-size(1px)
+        transparent-color = alpha(white, 0)
+        if bd-clr--res != currentColor
+            transparent-color = alpha(bd-clr--res, 0)
+        border-image linear-gradient(to bottom, transparent-color 0, bd-clr--res pc-res) 1 round round
+
+        &:hover
+            border-image linear-gradient(to bottom, bd-clr--res-2 0, bd-clr--res-2 pc-res) 1 round round
+
+        @supports not (border-image-width: 1)
+            border-bottom bd-width solid bd-clr--res
+
+            &:hover
+                border-bottom bd-width solid bd-clr--res-2
+
+
+    else
+        if not forceApply
+            @extend $link-decoration-none
+        else
+            border-image none
+            border-bottom none

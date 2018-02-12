@@ -1,0 +1,21 @@
+font-responsive(cp1-fsize, cp1-wsize, cp2-fsize, cp2-wsize, only-min = true)
+    font-size s("calc(%s + (100vw - %s) * %s)", cp1-fsize, cp1-wsize, round(unit((cp2-fsize - cp1-fsize) / (cp2-wsize - cp1-wsize), ""), 6))
+
+    if only-min
+        +below(cp1-wsize)
+            font-size cp1-fsize
+
+font-responsive--v2(cp1-fsize, cp1-wsize, cp2-fsize, cp2-wsize, cp3-fsize, cp3-wsize, only-min = true)
+    if only-min
+        +below(cp1-wsize)
+            font-size cp1-fsize
+
+    +between(cp1-wsize, cp2-wsize)
+        font-size s("calc(%s + (100vw - %s) * %s)", cp1-fsize, cp1-wsize, round(unit((cp2-fsize - cp1-fsize) / (cp2-wsize - cp1-wsize), ""), 6))
+
+    +above(cp2-wsize)
+        font-size s("calc(%s + (100vw - %s) * %s)", cp2-fsize, cp2-wsize, round(unit((cp3-fsize - cp2-fsize) / (cp3-wsize - cp2-wsize), ""), 6))
+
+font-responsive--v3(cp1-fsize, cp1-wsize, cp2-fsize, cp2-wsize)
+    fz-koef = round(unit((cp2-fsize - cp1-fsize) * 100 / 3 / (cp2-wsize - cp1-wsize), ""), 3)
+    font-size s("calc(%s + %svw + %svh + %svmin)", cp1-fsize, fz-koef, fz-koef, fz-koef)

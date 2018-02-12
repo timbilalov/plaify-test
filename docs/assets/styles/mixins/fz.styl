@@ -1,0 +1,6 @@
+fz(size, sizeParent = fz-default, units = em)
+    resSize = size / sizeParent
+    font-size unit(round(resSize, 3), units)
+
+fz--min(size, units = em)
+    fz(size, fz-min, units)

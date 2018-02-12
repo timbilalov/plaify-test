@@ -1,0 +1,31 @@
+.page-footer
+    padding 1em 0
+    background-color gray-bg
+    margin-top 3em
+
+    &__content
+        padding 2em 0
+        display flex
+        flex-wrap wrap
+        align-items center
+        justify-content space-between
+
+    &__logo
+        sprite("html5-logo")
+        margin-right 0.5em
+
+        &:link
+            link-decoration(none)
+
+
+    +below(bp-xm)
+        &__content
+            justify-content center
+
+        &__block
+            width 100%
+            margin-bottom 2em
+            text-align center
+
+            &:last-child
+                margin-bottom 0

@@ -1,0 +1,49 @@
+btn-paddings(pt = 0.3em, pdiff = 10%, pleft = 1.2em, pright = pleft)
+    pdiff-val = round(pt * (pdiff / 100), 2)
+    if pright == pleft
+        padding (pt - pdiff-val) pleft (pt + pdiff-val)
+    else
+        padding (pt - pdiff-val) pright (pt + pdiff-val) pleft
+
+btn-fsize = 16
+$btn
+    display inline-block
+    color black
+    btn-paddings(0.55em, , 1.3em)
+    outline 0
+    background-color transparent
+    border-radius 2em
+    border (4/btn-fsize)em solid currentColor
+    line-height 1
+    font-weight bold
+    fz(btn-fsize, , rem)
+    transition all trs-time-default
+    box-sizing border-box
+    position relative
+
+    &:hover
+        color lighten(black, 40)
+        border-image none
+
+    &:active
+        transform translate(0, 5%)
+
+    &:focus
+        box-shadow 0 0 0.5em form-focus-color
+
+
+.btn
+    @extend $btn
+
+    .svg-icon
+        width (10/btn-fsize)em
+        height (15/btn-fsize)em
+
+        &:first-child
+            margin-right 0.4em
+
+        &:last-child
+            margin-left 0.3em
+
+button
+    @extend $btn
