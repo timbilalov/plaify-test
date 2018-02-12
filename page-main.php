@@ -24,6 +24,28 @@ require_once ('header.php');
     </div>
 </section>
 
+
+<section class="js-slider slider">
+    <div class="slider__wrapper">
+        <a role="button" class="js-btn slider__btn slider__btn--prev" data-slide="prev"></a>
+        <a role="button" class="js-btn slider__btn slider__btn--next" data-slide="next"></a>
+
+        <div class="slider__container">
+            <div class="js-slide slider__item" data-slide="1">
+                <img src="/media/images/slider/item-1.jpg" alt="">
+            </div>
+
+            <div class="js-slide slider__item" data-slide="2">
+                <img src="/media/images/slider/item-2.jpg" alt="">
+            </div>
+
+            <div class="js-slide slider__item" data-slide="3">
+                <img src="/media/images/slider/item-3.jpg" alt="">
+            </div>
+        </div>
+    </div>
+</section>
+
 <?
 require ('footer.php');
 ?>
