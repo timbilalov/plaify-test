@@ -77,51 +77,6 @@
                 };
             },
 
-            // Stealed from
-            // https://github.com/VodkaBears/Remodal
-            getScrollbarWidth: function() {
-                var inner, outer, widthNoScroll, widthWithScroll, $wrapper, wrapper;
-                $wrapper = app.commonVars.$wrapper;
-                wrapper = $wrapper.get(0);
-                if (!wrapper || wrapper.clientHeight <= window.innerHeight) {
-                    return 0;
-                }
-                outer = document.createElement("div");
-                inner = document.createElement("div");
-                widthNoScroll = undefined;
-                widthWithScroll = undefined;
-                outer.style.visibility = "hidden";
-                outer.style.width = "100px";
-                document.body.appendChild(outer);
-                widthNoScroll = outer.offsetWidth;
-
-                // Force scrollbars
-                outer.style.overflow = "scroll";
-
-                // Add inner div
-                inner.style.width = "100%";
-                outer.appendChild(inner);
-                widthWithScroll = inner.offsetWidth;
-
-                // Remove divs
-                outer.parentNode.removeChild(outer);
-                outer = inner = null;
-                return widthNoScroll - widthWithScroll;
-            },
-
-            // TODO
-            // REPAINT
-            // Вызывает Recalculate Style
-            // Проверить, из-за чего, и можно ли избавиться
-            getScrTop: function() {
-                var $body, $document, $wrapper, scrTop;
-                $document = app.commonVars.$document;
-                $body = app.commonVars.$body;
-                $wrapper = app.commonVars.$wrapper;
-                scrTop = Math.max($document.scrollTop(), $body.scrollTop(), $wrapper.scrollTop(), 0);
-                return scrTop;
-            },
-
             getTime: (function() {
                 var res;
                 if (window.performance && typeof window.performance.now === "function") {
@@ -141,22 +96,6 @@
                 }
                 return res;
             })(),
-
-            newMeasureFunc: function(precision) {
-                var res, t0;
-                if (precision == null) {
-                    precision = 2;
-                }
-                t0 = app.utils.getTime(precision);
-                res = function() {
-                    var t1, t2;
-                    t1 = app.utils.getTime(precision);
-                    t2 = parseFloat((t1 - t0).toFixed(precision));
-                    t0 = t1;
-                    return t2;
-                };
-                return res;
-            },
 
             getInitTimes: function() {
                 var k, module, obj, ref, total;
@@ -356,75 +295,6 @@
         }
     };
 
-    // Unit-tests for app object
-    if (DEBUG && typeof mocha !== "undefined" && typeof describe === "function") {
-        mocha.setup("bdd");
-        describe("app object tests", function() {
-            it("Should be an object", function() {
-                expect(app).to.be.an("object");
-            });
-            it("Should contain a loadScript function", function() {
-                expect(app.loadScript).to.be.a("function");
-            });
-            it("Should contain a loadStyle function", function() {
-                expect(app.loadStyle).to.be.a("function");
-            });
-            it("We can create a deep namespace scope with a string like 'ns1.ns2.ns3'", function() {
-                app.createNS("ns1.ns2.ns3");
-                expect(app.ns1).to.be.an("object");
-                expect(app.ns1.ns2).to.be.an("object");
-                expect(app.ns1.ns2.ns3).to.be.an("object");
-                delete app.ns1;
-            });
-            it("initializedModules must be defined from the start", function() {
-                expect(app.initializedModules).to.be.an("array");
-            });
-
-            describe(".modules", function() {
-                it("Should be a function to create modules", function() {
-                    expect(app.createModule).to.be.a("function");
-                });
-                it("We can simply create a single module", function() {
-                    var module, testFunc;
-                    testFunc = function() {
-                        console.log("test module init");
-                    };
-                    var mName = "testmodule" + Math.round(Math.random() * 100);
-                    module = app.createModule(mName, testFunc);
-                    expect(module).to.be.equal(app.modules[mName]);
-                    app.initializedModules.splice(app.initializedModules.indexOf(mName), 1);
-                    delete app.modules[mName];
-                });
-                it("We can't create a module without initialization function", function() {
-                    var module;
-                    module = function() {
-                        app.createModule("testmodule");
-                    };
-                    expect(module).to["throw"];
-                });
-                it("Each module must have an init function", function() {
-                    var module;
-                    for (module in app.modules) {
-                        expect(app.modules[module].init).to.be.a("function");
-                    }
-                });
-                it("Should throw an exception if we try to initialize a module twice", function() {
-                    var mName, module, testFunc;
-                    mName = "testmodule" + Math.round(Math.random() * 100);
-                    testFunc = function() {
-                        return 1;
-                    };
-                    module = app.createModule(mName, testFunc);
-                    module.init();
-                    expect(module.init).to["throw"];
-                    app.initializedModules.splice(app.initializedModules.indexOf(mName), 1);
-                    delete app.modules[mName];
-                });
-            });
-        });
-    }
-
-
 
     var appInitFunc = function() {
         var benchmarkCloseBtn, benchmarkDiv, criticalInitTime, dColor, fTime, initTimes, m, module, moduleName, t, time, warningModules;
@@ -512,12 +382,6 @@
                     extra: initTimes
                 });
             }
-        }
-
-        // If unit tests library loaded, just load a file with tests
-        if (typeof mocha !== "undefined") {
-            mocha.setup("bdd");
-            mocha.run();
         }
     };
 

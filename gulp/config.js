@@ -15,7 +15,7 @@ module.exports = {
     scripts: {
         watch: 'assets/scripts/**/*.js',
         nameProd: 'project.min.js',
-        toConcat: ['./assets/build/dev/svg-sprite.js', './assets/scripts/raven.min.js', './assets/scripts/raven.config.js', './assets/scripts/app.js', './assets/scripts/modules/**/*.js'],
+        toConcat: ['./assets/build/dev/svg-sprite.js', './assets/scripts/app.js', './assets/scripts/modules/**/*.js'],
         compileDest: './assets/build/prod',
         modulesPath: './assets/scripts/modules/',
         lint: ['./assets/scripts/app.js', './assets/scripts/modules/**/*.js'],

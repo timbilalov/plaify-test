@@ -51,21 +51,6 @@
         <? } ?>
 
         <?
-        // Load unit tests library
-        if ($unitTests) { ?>
-        <div class="g-hidden" id="js-unit-tests"></div>
-        <div id="mocha"></div>
-        <script src="/assets/scripts/unit-tests/chai-2.1.1.min.js"></script>
-        <script src="/assets/scripts/unit-tests/mocha-2.2.1.min.js"></script>
-        <script src="/assets/scripts/unit-tests/mocha-clean-0.3.0.js"></script>
-        <script>
-            mocha.setup('bdd');
-            mocha.traceIgnores = ['mocha-2.2.1.min.js', 'chai-2.1.1.min.js'];
-            expect = chai.expect;
-        </script>
-        <? } ?>
-
-        <?
         // Load scripts for debug
         if ($debug) { ?>
         <script src="/assets/build/dev/svg-sprite.js?<?php echo filemtime($_SERVER['DOCUMENT_ROOT'].'/assets/build/dev/svg-sprite.js'); ?>"></script>

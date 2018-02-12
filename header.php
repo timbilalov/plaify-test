@@ -3,7 +3,6 @@
 $projectName = 'plaify-test';
 
 // Debugging options
-$unitTests = $_GET['unit'] == '1';
 $serverName = $_SERVER['SERVER_NAME'];
 $debug = $serverName == $projectName ? true : ($_COOKIE['debug'] == '1' || $_GET['debug'] == '1');
 if ($_GET['debug'] == '0') { $debug = false; }
@@ -47,11 +46,6 @@ require_once "functions.php";
     <link rel="stylesheet" href="<?=$buildDest?>project.dev.css?<?php echo filemtime($_SERVER['DOCUMENT_ROOT'].$buildDest.'project.dev.css'); ?>" media="all" />
     <? } else { ?>
     <link rel="stylesheet" href="<?=$buildDest?>project.min.css?<?php echo filemtime($_SERVER['DOCUMENT_ROOT'].$buildDest.'project.min.css'); ?>" media="all" />
-    <? } ?>
-
-
-    <? if ($unitTests) { ?>
-    <link rel="stylesheet" href="/assets/scripts/unit-tests/mocha-2.1.0.min.css" media="all" />
     <? } ?>
 </head>
 

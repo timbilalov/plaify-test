@@ -31,11 +31,6 @@
 Для подключения и сборки скриптов используется система, которую с некоторыми оговорками можно назвать модульной. Для начала струкрута папки `/assets/scripts/`:
 ```
 scripts
-|-- unit-tests
-|   |-- chai-2.1.1.min.js
-|   |-- mocha-2.1.0.min.css
-|   |-- mocha-2.2.1.min.js
-|   |-- mocha-clean-0.3.0.js
 |-- modules
 |   |-- pageLoad.js
 |   |-- windowResize.js
@@ -44,8 +39,6 @@ scripts
 |
 |-- debug-flag-enabled.js
 |-- app.js
-|-- raven.min.js
-|-- raven.config.js
 ```
 
 "Точкой входа" всех скриптов является файл **app.js**. В нём инициализируется объект `app = {}`, который содержит в себе несколько полезных функций.
