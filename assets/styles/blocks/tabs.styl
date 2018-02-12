@@ -1,0 +1,29 @@
+.tabs
+    margin 2rem 0
+
+    &__nav
+        display flex
+        justify-content flex-start
+
+    &__btn
+        background-color gray-bg
+        padding 0.5em 0.8em
+        display inline-block
+        transition background-color trs-time-default
+        margin-right 0.3em
+
+        &:last-child
+            margin-right 0
+
+        &:hover
+        &.is-active
+            background-color lighten(gray-bg, -5)
+
+    &__text
+        padding 2rem 0
+
+    &.is-preparing
+        & ^[0]
+            &__content
+                &:not(:first-child)
+                    display none

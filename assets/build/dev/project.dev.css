@@ -211,7 +211,7 @@ th {
   }
 }
 .page-footer__logo {
-  background-image: url("/assets/build/prod/sprites/common-sprite.png?mt=1518367239691");
+  background-image: url("/assets/build/dev/sprites/common-sprite.png?mt=1518422032054");
 }
 body,
 html {
@@ -1393,6 +1393,38 @@ table > tbody:first-child tr:first-child td {
 }
 .pg-list--3 {
   bottom: 6.5rem;
+}
+.tabs {
+  margin: 2rem 0;
+}
+.tabs__nav {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+}
+.tabs__btn {
+  background-color: #efefef;
+  padding: 0.5em 0.8em;
+  display: inline-block;
+  -webkit-transition: background-color 0.2s;
+  transition: background-color 0.2s;
+  margin-right: 0.3em;
+}
+.tabs__btn:last-child {
+  margin-right: 0;
+}
+.tabs__btn:hover,
+.tabs__btn.is-active {
+  background-color: #e2e2e2;
+}
+.tabs__text {
+  padding: 2rem 0;
+}
+.tabs.is-preparing .tabs__content:not(:first-child) {
+  display: none;
 }
 @media print {
   *,
