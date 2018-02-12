@@ -27,19 +27,6 @@
             </div>
         </footer>
 
-        <?
-        // TODO: Типограф всё-таки очень долго работает... Эх...
-        // Решить бы с ним что-нибудь.
-        if ($useTypograph) {
-            $content = ob_get_contents();
-            ob_end_clean();
-
-            $typograph->set_text($content);
-            $contentTypographed = $typograph->apply();
-            echo $contentTypographed ? $contentTypographed : $content;
-        }
-        ?>
-
         <? // SVG icons ?>
         <div id="svg-container" class="g-hidden"></div>
 

@@ -10,13 +10,6 @@ if ($_GET['debug'] == '0') { $debug = false; }
 // Check for local server
 $isLocal = ($serverName == $projectName) || (strpos($serverName, "localhost") !== false) || (strpos($serverName, "192.168") !== false) || (strpos($serverName, "10.42") !== false);
 
-// Typograph
-$useTypograph = true;
-
-if ($debug) {
-    $useTypograph = false;
-}
-
 // Set assets build path
 if ($debug) {
     $buildDest = "/assets/build/dev/";
@@ -51,29 +44,6 @@ require_once "functions.php";
 
 <body>
     <div class="l-wrapper">
-        <?
-        if ($useTypograph) {
-            require_once($_SERVER['DOCUMENT_ROOT'] . '/assets/typograph/EMT.php');
-            $typograph = new EMTypograph();
-
-            // настройки
-            $options = array(
-                'Text.paragraphs'=>'off',
-                'Text.breakline'=>'off',
-                'OptAlign.oa_oquote'=>'off',
-
-                'Nobr.phone_builder'=>'off',
-                'Number.thinsp_between_no_and_number'=>'off',
-                'Number.thinsp_between_number_triads'=>'off',
-                'Nobr.spaces_nobr_in_surname_abbr'=>'off',
-
-                'Symbol.arrows_symbols'=> 'off',
-            );
-            $typograph->setup($options);
-
-            ob_start();
-        }
-        ?>
 
         <?php
         // Warning bar for users with disabled JS
