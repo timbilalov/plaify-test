@@ -8,8 +8,11 @@
                 <div class="page-footer__block page-footer__copyright">
                     <a href="#" class="page-footer__logo"></a>
                     <span class="g-vam">
-                        &copy;&nbsp;2014-<?=Date("Y")?><br/>
-                        Company
+                        &copy;&nbsp;<?php
+                            $copyYear = "2018";
+                            if ($copyYear == Date("Y")) { echo '<span itemprop="copyrightYear">'.$copyYear.'</span>'; } else { echo $copyYear . "-" . '<span itemprop="copyrightYear">'.Date("Y").'</span>'; }
+                        ?><br/>
+                        <a href="https://vk.com/timbilalov" target="_blank" rel="nofollow">Тимур Билалов</a>
                     </span>
                 </div>
 

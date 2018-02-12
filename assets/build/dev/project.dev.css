@@ -213,7 +213,7 @@ th {
 .page-footer__logo,
 .slider__btn--next:after,
 .slider__btn--prev:after {
-  background-image: url("/assets/build/dev/sprites/common-sprite.png?mt=1518425566773");
+  background-image: url("/assets/build/prod/sprites/common-sprite.png?mt=1518441958149");
 }
 body,
 html {
@@ -1489,6 +1489,7 @@ table > tbody:first-child tr:first-child td {
 }
 .slider__container {
   position: relative;
+  min-height: 12.5rem;
   overflow: hidden;
   z-index: 1;
   background-color: #fff;

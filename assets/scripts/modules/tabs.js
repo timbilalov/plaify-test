@@ -4,8 +4,7 @@ app.createModule("tabs", function() {
         return false;
     }
 
-    // Local variables
-
+    // Локальные переменные
     var module = this;
     var dAttrTabNumber = "data-tab";
     var btns = parent.querySelectorAll(".js-btn");
@@ -14,21 +13,21 @@ app.createModule("tabs", function() {
     var tabNumbersArray = [];
     var activeClass = "is-active";
     var preparingClass = "is-preparing";
+    var arrProto = Array.prototype;
 
+    // Проверка, совпадает ли количество табов и кнопок-переключателей.
     if (contentElems.length !== btns.length) {
         DEBUG && console.log("%c[module tabs] btns count != content conut. check your markup!", "color: red");
         return false;
     }
 
-    Array.prototype.forEach.call(btns, function(elem) {
+    arrProto.forEach.call(btns, function(elem) {
         tabNumbersArray.push(parseInt(elem.getAttribute(dAttrTabNumber)));
     });
 
-
-    // Checks
-
+    // Проверка, для всех ли табов есть подходящая кнопка, которая его раскроет.
     var k = 0;
-    Array.prototype.forEach.call(contentElems, function(elem) {
+    arrProto.forEach.call(contentElems, function(elem) {
         var tabNumber = parseInt(elem.getAttribute(dAttrTabNumber));
         if (tabNumbersArray.indexOf(tabNumber) < 0) {
             k++;
@@ -41,14 +40,14 @@ app.createModule("tabs", function() {
     }
 
 
-    // Methods
+    // Методы
 
     var hideAllTabs = function() {
-        Array.prototype.forEach.call(contentElems, function(elem) {
+        arrProto.forEach.call(contentElems, function(elem) {
             elem.classList.add(hiddenClass);
         });
 
-        Array.prototype.forEach.call(btns, function(elem) {
+        arrProto.forEach.call(btns, function(elem) {
             elem.classList.remove(activeClass);
         });
     };
@@ -59,14 +58,15 @@ app.createModule("tabs", function() {
             return;
         }
 
-        var contentToShow = Array.prototype.filter.call(contentElems, function(elem) {
+        var contentToShow = arrProto.filter.call(contentElems, function(elem) {
             return parseInt(elem.getAttribute(dAttrTabNumber)) === tabNumber;
         })[0];
 
-        var activeBtn = Array.prototype.filter.call(btns, function(elem) {
+        var activeBtn = arrProto.filter.call(btns, function(elem) {
             return parseInt(elem.getAttribute(dAttrTabNumber)) === tabNumber;
         })[0];
 
+        // Скрываем все табы, затем показываем один необходимый.
         hideAllTabs();
         contentToShow.classList.remove(hiddenClass);
         activeBtn.classList.add(activeClass);
@@ -78,17 +78,18 @@ app.createModule("tabs", function() {
     };
 
 
-    // Binds
-    Array.prototype.forEach.call(btns, function(elem) {
+    // Бинды
+    arrProto.forEach.call(btns, function(elem) {
         elem.addEventListener("click", btnClick);
     });
 
 
-    // Init
+    // Для того, чтобы корректно проставились все классы,
+    // "открываем" первый таб.
     parent.classList.remove(preparingClass);
     showTab(tabNumbersArray[0]);
 
 
-    // Export
+    // Экспорт
     module.showTab = showTab;
 });

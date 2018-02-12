@@ -4,19 +4,23 @@ app.createModule("search", function() {
         return false;
     }
 
-    // Local variables
+    // Локальные переменные
     var module = this;
     var genresFilter = parent.querySelector(".js-filter-genre");
     var nameFilter = parent.querySelector(".js-filter-name");
-    var currentFilterName = currentFilterGenre = null;
+    var currentFilterName = null;
+    var currentFilterGenre = null;
     var allGenres = [];
     var items = parent.querySelectorAll(".js-item");
     var itemsCount = items.length;
     var dAttrGenre = "data-genre";
     var hiddenClass = "g-hidden";
     var emptyMessageElem = parent.querySelector(".js-empty-message");
+    var arrProto = Array.prototype;
 
-    Array.prototype.forEach.call(genresFilter.querySelectorAll("option"), function(elem) {
+
+    // Собираем все возможные значения жанров, чтобы проводить доп. проверки в функции setFilterGenre
+    arrProto.forEach.call(genresFilter.querySelectorAll("option"), function(elem) {
         var genre = elem.value;
         if (genre !== "" && genre !== "null") {
             allGenres.push(genre);
@@ -26,20 +30,30 @@ app.createModule("search", function() {
     DEBUG && console.log("[module search] genres obtained: ", allGenres);
 
 
-    // Methods
+    // Методы
+    // TODO: При необходимости, можно отрефакторить - две функции setFilterName и setFilterGenre похожи
 
     var setFilterName = function(name, changeInputVal) {
         changeInputVal = changeInputVal || true;
         var res;
 
+        // Если передать функции "левое" значение, то сбрасываем поле поиска по названию
         if (typeof name !== "string" || (typeof name === "string" && name.trim() === "")) {
             res = null;
+
         } else {
             res = name;
         }
 
         currentFilterName = res;
-        nameFilter.value = res;
+        // Нужно, чтобы избежать пересечения двух событий:
+        // пользователь сам ввёл данные, и когда отработала сама функция.
+        // Без этого, возможна ситуация, когда функция будет рекурсивно вызывать саму себя,
+        // при вводе данных пользователем на странице.
+        if (changeInputVal) {
+            nameFilter.value = res;
+        }
+
         DEBUG && console.log("%c[module search] filter name set to: " + res, "color: #999");
         updateCollection();
     };
@@ -48,10 +62,14 @@ app.createModule("search", function() {
         changeInputVal = changeInputVal || true;
         var res;
 
+        // Если передать функции "левый" жанр, которого нет в изначальном наборе,
+        // то прерываем функцию. В противном случае, в поле селекта "жанр" установится
+        // пустое (не то, которое по дефолту) значение, и это не айс.
         if (genre && !(typeof genre === "string" && (genre.trim() === "null" || genre.trim() === "")) && allGenres.indexOf(genre) < 0) {
             return;
         }
 
+        // Если передать пустую строку или null, то будет выбран пункт по-умолчанию.
         if (typeof genre !== "string" || (typeof genre === "string" && (genre.trim() === "null" || genre.trim() === ""))) {
             res = null;
         } else {
@@ -59,7 +77,14 @@ app.createModule("search", function() {
         }
 
         currentFilterGenre = res;
-        genresFilter.value = res;
+        // Нужно, чтобы избежать пересечения двух событий:
+        // пользователь сам ввёл данные, и когда отработала сама функция.
+        // Без этого, возможна ситуация, когда функция будет рекурсивно вызывать саму себя,
+        // при вводе данных пользователем на странице.
+        if (changeInputVal) {
+            genresFilter.value = res;
+        }
+
         DEBUG && console.log("%c[module search] filter genre set to: " + res, "color: #999");
         updateCollection();
     };
@@ -67,20 +92,27 @@ app.createModule("search", function() {
     var updateCollection = function() {
         var shownItemsCount = 0;
 
-        Array.prototype.forEach.call(items, function(elem) {
+        // Проходимся по всем экземплярам из коллекции.
+        arrProto.forEach.call(items, function(elem) {
             var elemName = elem.querySelector(".js-name").textContent;
             var elemGenres = elem.getAttribute(dAttrGenre).split(",");
 
+            // Определяем, задана ли фильтрация по названию, и, если да,
+            // содержится ли строка в названии экземпляра коллекции.
             var testFilterName = true;
             if (currentFilterName !== null && typeof currentFilterName === "string") {
                 testFilterName = new RegExp(currentFilterName, "gi").test(elemName);
             }
 
+            // Определяем, задана ли фильтрация по жанру, и, если да,
+            // соответствует ли жанр экземпляра коллекции тому, по которому идёт фильтрация.
             var testFilterGenre = true;
             if (currentFilterGenre !== null && typeof currentFilterGenre === "string") {
                 testFilterGenre = elemGenres.indexOf(currentFilterGenre) >= 0;
             }
 
+            // Если обе проверки дают положительный результат,
+            // то отображаем данный элемент. В противном случае, скрываем его.
             if (testFilterName && testFilterGenre) {
                 elem.classList.remove(hiddenClass);
                 shownItemsCount++;
@@ -89,6 +121,8 @@ app.createModule("search", function() {
             }
         });
 
+        // Если ни один экземпляр не проходит фильтрацию, то показываем
+        // сообщение "не найдено".
         if (shownItemsCount === 0) {
             showEmptyMessage();
         } else {
@@ -117,13 +151,12 @@ app.createModule("search", function() {
     };
 
 
-    // Binds
+    // Бинды
     nameFilter.addEventListener("input", app.utils.debouncer(filterNameController, 200));
     genresFilter.addEventListener("change", filterGenreController);
 
 
-    // Export
-    module.updateCollection = updateCollection;
+    // Экспорт
     module.setFilterName = setFilterName;
     module.setFilterGenre = setFilterGenre;
 });

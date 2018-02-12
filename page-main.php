@@ -1,4 +1,5 @@
 <?
+$page = "main";
 require_once ('header.php');
 ?>
 
@@ -7,6 +8,7 @@ require_once ('header.php');
         <a role="button" class="js-btn tabs__btn" data-tab="1">Таб 1</a>
         <a role="button" class="js-btn tabs__btn" data-tab="2">Таб 2</a>
         <a role="button" class="js-btn tabs__btn" data-tab="3">Таб 3</a>
+        <a role="button" class="js-btn tabs__btn" data-tab="4">Таб 4</a>
     </nav>
 
     <div class="tabs__text">
@@ -20,6 +22,10 @@ require_once ('header.php');
 
         <div class="js-content tabs__content" data-tab="3">
             Содержимое третьего таба.<br/> Lorem ipsum dolor sit amet.
+        </div>
+
+        <div class="js-content tabs__content" data-tab="4">
+            Таб номер 4.
         </div>
     </div>
 </section>

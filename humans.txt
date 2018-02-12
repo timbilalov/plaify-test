@@ -8,4 +8,4 @@ Components: jQuery, Swiper, Parsley
 JS-logger: Sentry
 
 
-Last update: 11.02.2018
+Last update: 12.02.2018

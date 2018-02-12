@@ -108,7 +108,7 @@ require_once "functions.php";
                                 <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-temp-html5"></use>
                             </svg>
 
-                            <span class="g-vam">Logo here</span>
+                            <span class="g-vam">Тестовое задание<br/>Plaify</span>
                         </a>
                     </div>
                 </div>
